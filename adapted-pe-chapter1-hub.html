@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1: Adapted Physical Education & Sport - Interactive Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .citation {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #555;
+            border-left: 4px solid #667eea;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card.definition { border-top-color: #3498db; }
+        .card.history { border-top-color: #e74c3c; }
+        .card.legislation { border-top-color: #f39c12; }
+        .card.sport { border-top-color: #2ecc71; }
+        .card.resources { border-top-color: #9b59b6; }
+        .card.planning { border-top-color: #1abc9c; }
+
+        .card-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .card p {
+            color: #7f8c8d;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .detail-view {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .detail-view.active {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #ecf0f1;
+        }
+
+        .detail-icon {
+            font-size: 3em;
+            margin-right: 20px;
+        }
+
+        .detail-title {
+            flex: 1;
+        }
+
+        .detail-title h2 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .detail-title p {
+            color: #7f8c8d;
+        }
+
+        .back-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .content-section {
+            margin-bottom: 25px;
+        }
+
+        .content-section h3 {
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+        }
+
+        .content-section h3::before {
+            content: "▸";
+            color: #667eea;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .content-section h4 {
+            color: #34495e;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .content-section p, .content-section li {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .content-section ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .key-term {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .timeline {
+            border-left: 3px solid #667eea;
+            padding-left: 20px;
+            margin-left: 10px;
+        }
+
+        .timeline-item {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "●";
+            position: absolute;
+            left: -27px;
+            color: #667eea;
+            font-size: 1.5em;
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .law-card {
+            background: #e8f5e9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #2ecc71;
+        }
+
+        .law-card h4 {
+            color: #27ae60;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Chapter 1: Introduction to Adapted Physical Education and Sport</h1>
+            <p>Your Interactive Quick Reference Guide</p>
+        </div>
+
+        <div class="citation">
+            <strong>📖 Source:</strong> Winnick, J.P., & Porretta, D.L. (Eds.). <em>Adapted Physical Education and Sport</em> (7th ed.). Human Kinetics.
+        </div>
+
+        <!-- Main Grid View -->
+        <div id="mainGrid" class="grid">
+            <!-- Card 1: Meaning of Adapted PE -->
+            <div class="card definition" onclick="showDetail('detail1')">
+                <div class="card-icon">🎯</div>
+                <h3>Meaning of Adapted PE</h3>
+                <p>Core definitions and key terminology</p>
+            </div>
+
+            <!-- Card 2: Adapted Sport -->
+            <div class="card sport" onclick="showDetail('detail2')">
+                <div class="card-icon">🏀</div>
+                <h3>Adapted Sport</h3>
+                <p>Modified sports for unique needs</p>
+            </div>
+
+            <!-- Card 3: Planning Framework -->
+            <div class="card planning" onclick="showDetail('detail3')">
+                <div class="card-icon">📋</div>
+                <h3>Planning Framework</h3>
+                <p>Purposes, aims, goals & objectives</p>
+            </div>
+
+            <!-- Card 4: Service Providers -->
+            <div class="card definition" onclick="showDetail('detail4')">
+                <div class="card-icon">👥</div>
+                <h3>Service Providers</h3>
+                <p>Key professionals in the field</p>
+            </div>
+
+            <!-- Card 5: Brief History -->
+            <div class="card history" onclick="showDetail('detail5')">
+                <div class="card-icon">📜</div>
+                <h3>Brief History</h3>
+                <p>Evolution of adapted PE</p>
+            </div>
+
+            <!-- Card 6: Inclusion Movement -->
+            <div class="card planning" onclick="showDetail('detail6')">
+                <div class="card-icon">🤝</div>
+                <h3>Inclusion Movement</h3>
+                <p>LRE and educational settings</p>
+            </div>
+
+            <!-- Card 7: Litigation -->
+            <div class="card legislation" onclick="showDetail('detail7')">
+                <div class="card-icon">⚖️</div>
+                <h3>Litigation</h3>
+                <p>Landmark court cases</p>
+            </div>
+
+            <!-- Card 8: Important Laws -->
+            <div class="card legislation" onclick="showDetail('detail8')">
+                <div class="card-icon">📜</div>
+                <h3>Important Laws</h3>
+                <p>Federal legislation overview</p>
+            </div>
+
+            <!-- Card 9: History of Adapted Sport -->
+            <div class="card history" onclick="showDetail('detail9')">
+                <div class="card-icon">🏆</div>
+                <h3>History of Adapted Sport</h3>
+                <p>Development of sport opportunities</p>
+            </div>
+
+            <!-- Card 10: Periodicals -->
+            <div class="card resources" onclick="showDetail('detail10')">
+                <div class="card-icon">📰</div>
+                <h3>Periodicals</h3>
+                <p>Key journals and publications</p>
+            </div>
+
+            <!-- Card 11: Organizations -->
+            <div class="card resources" onclick="showDetail('detail11')">
+                <div class="card-icon">🏛️</div>
+                <h3>Organizations</h3>
+                <p>Professional organizations</p>
+            </div>
+
+            <!-- Card 12: Summary -->
+            <div class="card definition" onclick="showDetail('detail12')">
+                <div class="card-icon">✨</div>
+                <h3>Chapter Summary</h3>
+                <p>Key takeaways</p>
+            </div>
+        </div>
+
+        <!-- Detail Views -->
+        
+        <!-- Detail 1: Meaning of Adapted PE -->
+        <div id="detail1" class="detail-view">
+            <div class="detail-header">
+                <div class="detail-icon">🎯</div>
+                <div class="detail-title">
+                    <h2>Meaning of Adapted Physical Education</h2>
+                    <p>Core definitions and terminology</p>
+                </div>
+                <button class="back-btn" onclick="showGrid()">← Back to Menu</button>
+            </div>
+
+            <div class="content-section">
+                <h3>Definition</h3>
+                <div class="highlight-box">
+                    <p><strong>Adapted Physical Education</strong> is an individualized program that includes:</p>
+                    <ul>
+                        <li>Physical and motor fitness</li>
+                        <li>Fundamental motor skills and patterns</li>
+                        <li>Skills in aquatics and dance</li>
+                        <li>Individual and group games and sports</li>
+                    </ul>
+                    <p>Designed to meet the <strong>unique needs of individuals</strong> with varying abilities.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Key Terminology</h3>
+                <h4><span class="key-term">Adapted</span> vs. <span class="key-term">Adaptive</span></h4>
+                <p><strong>Adapted:</strong> "To adjust" or "to fit" - refers to modifications to meet student needs</p>
+                <p><strong>Adaptive:</strong> Describes a person's behavior - should NOT be used interchangeably</p>
+                
+                <h4>Age Range</h4>
+                <p>Adapted PE focuses on ages <strong>0 to 21</strong>, though it may exceed minimum time required by law.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Program Components</h3>
+                <ul>
+                    <li><strong>Educational:</strong> Takes place in schools and educational agencies</li>
+                    <li><strong>Draws on related services:</strong> Medical services, physical therapy, occupational therapy</li>
+                    <li><strong>Should NOT be supplanted by:</strong> Physical therapy, intramurals, sport days, athletics</li>
+                    <li><strong>Program vs. Placement:</strong> APE is a program, directly influenced by placement setting</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>Adapted Physical Activity</h3>
+                <p>Broader term encompassing comprehensive study of physical activity for education, sport, and leisure of individuals with unique needs across the <strong>total lifespan</strong>.</p>
+            </div>
+        </div>
+
+        <!-- Detail 2: Adapted Sport -->
+        <div id="detail2" class="detail-view">
+            <div class="detail-header">
+                <div class="detail-icon">🏀</div>
+                <div class="detail-title">
+                    <h2>Adapted Sport</h2>
+                    <p>Sport modified to meet unique needs</p>
+                </div>
+                <button class="back-btn" onclick="showGrid()">← Back to Menu</button>
+            </div>
+
+            <div class="content-section">
+                <h3>Definition</h3>
+                <div class="highlight-box">
+                    <p><strong>Adapted Sport:</strong> Sport modified or created to meet the unique needs of individuals.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Examples</h3>
+                <ul>
+                    <li><strong>Basketball (general sport)</strong> → Wheelchair Basketball (adapted sport)</li>
+                    <li><strong>Goalball:</strong> A game created for people with visual impairments where players attempt to roll a ball that emits a sound across their opponents' goal</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>Terminology Preference</h3>
+                <div class="highlight-box">
+                    <p><strong>"Adapted sport"</strong> terminology is preferred for many reasons:</p>
+                    <ul>
+                        <li>Consistent with terms "adapted physical education" and "adapted physical activity"</li>
+                        <li>Focuses on modification of sport rather than disability</li>
+                        <li>Encourages participation in most integrated environment</li>
+                        <li>Consistent with normalization theory</li>
+                        <li>Promotes creation of sport opportunities</li>
+                        <li>Provides opportunity for pursuit of excellence throughout full spectrum of settings</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Settings & Participation</h3>
+                <p>Individuals with disabilities may participate in:</p>
+                <ul>
+                    <li>General sport</li>
+                    <li>Adapted sport in unified, segregated, individualized, and parallel settings</li>
+                    <li>Educational settings and regional, national, and international competition</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>Types of Sport Programs</h3>
+                <ul>
+                    <li><strong>Intramural:</strong> Within schools, for all enrolled pupils</li>
+                    <li><strong>Extramural:</strong> Between two or more schools (play days/sport days)</li>
+                    <li><strong>Interscholastic:</strong> Competition between representatives from different schools</li>
+                    <li><strong>Leisure/Recreation:</strong> Formal, open, or unstructured programs for wellness, medical, or therapeutic reasons</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Detail 3: Planning Framework -->
+        <div id="detail3" class="detail-view">
+            <div class="detail-header">
+                <div class="detail-icon">📋</div>
+                <div class="detail-title">
+                    <h2>Planning: Purposes, Aims, Goals, and Objectives</h2>
+                    <p>Framework for program development</p>
+                </div>
+                <button class="back-btn" onclick="showGrid()">← Back to Menu</button>
+            </div>
+
+            <div class="content-section">
+                <h3>Purpose of Adapted PE</h3>
+                <div class="highlight-box">
+                    <p><strong>Primary Purpose:</strong> To promote <span class="key-term">self-actualization</span></p>
+                    <p>This promotes optimal personal development and contributes to the whole of society.</p>
+                    <p>Consistent with <strong>humanism</strong> - a philosophy of helping people become fully human and actualize their potential.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>SHAPE America's National Physical Education Standards</h3>
+                <p>The physically educated person:</p>
+                
+                <div class="highlight-box" style="background: #fff3e0; border-left-color: #ff9800;">
+                    <p><strong>Standard 1: Develops a variety of motor skills</strong></p>
+                    <p>Through learning experiences in physical education, the student develops motor skills across a variety of environments. Motor skills are a foundational part of child development and support the movements of everyday life. The development of motor skills contributes to an individual's physical literacy journey.</p>
+                </div>
+                
+                <div class="highlight-box" style="background: #e8f5e9; border-left-color: #4caf50;">
+                    <p><strong>Standard 2: Applies knowledge related to movement and fitness concepts</strong></p>
+                    <p>Through learning experiences in physical education, the student uses their knowledge of movement concepts, tactics, and strategies across a variety of environments. This knowledge helps the student become a more versatile and efficient mover. Additionally, the student applies knowledge of health-related and skill-related fitness to enhance their overall well-being. The application of knowledge related to various forms of movement contributes to an individual's physical literacy journey.</p>
+                </div>
+                
+                <div class="highlight-box" style="background: #e1f5fe; border-left-color: #03a9f4;">
+                    <p><strong>Standard 3: Develops social skills through movement</strong></p>
+                    <p>Through learning experiences in physical education, the student develops the social skills necessary to exhibit empathy and respect for others, and foster and maintain relationships. In addition, the student develops skills for communication, leadership, cultural awareness, and conflict resolution in a variety of physical activity settings.</p>
+                </div>
+                
+                <div class="highlight-box" style="background: #f3e5f5; border-left-color: #9c27b0;">
+                    <p><strong>Standard 4: Develops personal skills, identifies personal benefits of movement, and chooses to engage in physical activity</strong></p>
+                    <p>Through learning experiences in physical education, the student develops an understanding of how movement is personally beneficial and subsequently chooses to participate in physical activities that are personally meaningful (e.g., activities that offer social interaction, cultural connection, exploration, choice, self-expression, appropriate levels of challenge, and added health benefits). The student develops personal skills including goal setting, identifying strengths, and reflection to enhance their physical literacy journey.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Program Framework</h3>
+                <p>Development accomplished through experiences in three domains:</p>
+                <ul>
+                    <li><strong>Psychomotor Domain:</strong> Physical and motor fitness, fundamental motor skills, rhythm/dance, aquatics, games/sports</li>
+                    <li><strong>Cognitive Domain:</strong> Education OF the psychomotor domain</li>
+                    <li><strong>Affective Domain:</strong> Development THROUGH the psychomotor domain</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>Content Goal Areas</h3>
+                <p>Five content areas consistent with IDEA definition:</p>
+                <ol>
+                    <li>Physical fitness</li>
+                    <li>Motor development</li>
+                    <li>Rhythm and dance</li>
+                    <li>Aquatics</li>
+                    <li>Games and sports</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Detail 4: Service Providers -->
+        <div id="detail4" class="detail-view">
+            <div class="detail-header">
+                <div class="detail-icon">👥</div>
+                <div class="detail-title">
+                    <h2>Service Providers</h2>
+                    <p>Key professionals ensuring quality experiences</p>
+                </div>
+                <button class="back-btn" onclick="showGrid()">← Back to Menu</button>
+            </div>
+
+            <div class="content-section">
+                <h3>Key Point</h3>
+                <div class="highlight-box">
+                    <p>Adapted PE and sport is provided <strong>not only by specialists</strong> but also by <strong>general physical educators</strong>.</p>
+                    <p>If only specialists provided services, relatively few students would receive them due to limited number of specialists.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Service Provider Roles</h3>
+                <ul>
+                    <li><strong>Teachers of Physical Education:</strong> Must assume responsibility for all children and be willing to contribute to each student's development</li>
+                    <li><strong>Coaches:</strong> Provide sport instruction and training</li>
+                    <li><strong>Therapists:</strong> Physical and occupational therapists provide related services</li>
+                    <li><strong>Paraeducators:</strong> Assist in program delivery</li>
+                    <li><strong>Volunteers:</strong> Support program implementation</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>Professional Philosophy</h3>
+                <div class="highlight-box">
+                    <p>Success for <strong>all</strong> students requires an instructor with:</p>
+                    <ul>
+                        <li>Appropriate professional knowledge</li>
+                        <li>Skills</li>
+                        <li>Values</li>
+                        <li>Philosophy that looks toward human service beyond win-loss records</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Teacher Qualities</h3>
+                <p>Good teachers/coaches display:</p>
+                <ul>
+                    <li>Caring and helping attitude</li>
+                    <li>Recognition of importance of positive self-esteem</li>
+                    <li>Acceptance, empathy, friendship, and warmth</li>
+                    <li>Creation of secure and controlled learning environment</li>
+                    <li>Use of beneficial teaching approaches and styles</li>
+                    <li>Individualized and personalized instruction</li>
+                    <li>Positive educational environment where all students are accepted and supported</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Detail 5: Brief History -->
+        <div id="detail5" class="detail-view">
+            <div class="detail-header">
+                <div class="detail-icon">📜</div>
+                <div class="detail-title">
+                    <h2>Brief History of Adapted Physical Education</h2>
+                    <p>Evolution from medical treatment to comprehensive education</p>
+                </div>
+                <button class="back-btn" onclick="showGrid()">← Back to Menu</button>
+            </div>
+
+            <div class="content-section">
+                <h3>Historical Timeline</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p class="timeline-year">1838</p>
+                        <p><strong>Beginning of Adapted Physical Activity</strong></p>
+                        <p>Physical activity began receiving special attention at the Perkins School for students with visual disabilities in Boston. Samuel Gridley Howe advocated for health benefits of physical activity.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">Before 1900</p>
+                        <p><strong>Medical Orientation</strong></p>
+                        <p>Physical education was medically oriented and preventive, developmental, or corrective. Influenced by Swedish medical gymnastics system developed by Per Henrik Ling (introduced to US in 1894). Luther Halsey Gulick was a pioneer in promotion of medical gymnastics.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">1930s-1950s</p>
+                        <p><strong>Shift to Sport and Whole Person</strong></p>
+                        <p>Programs shifted from medically oriented training to sport-centered PE. Concern for the whole child emerged. Compulsory PE in public schools increased dramatically.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">1950s</p>
+                        <p><strong>Emerging Comprehensive Subdiscipline</strong></p>
+                        <p>Greater diversity in students came greater diversity in programs. In 1952, AAHPER formed committee to define subdiscipline and give direction.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">1952</p>
+                        <p><strong>AAHPER Committee Definition</strong></p>
+                        <p>Adapted PE defined as "a diversified program of developmental activities, games, sports, and rhythms suited to interests, capacities, and limitations of students with disabilities who may not safely or successfully engage in unrestricted participation in rigorous activities of the regular physical education program."</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">1954</p>
+                        <p><strong>First Textbook</strong></p>
+                        <p>Arthur Daniels (Ohio State University) authored first textbook entitled <em>Adapted Physical Education</em>. This term still serves as comprehensive term for the subdiscipline.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">1960s-Present</p>
+                        <p><strong>Recent and Current Status</strong></p>
+                        <p>Major advances continued with more humanistic, informed, and less discriminatory society. Key developments:</p>
+                        <ul>
+                            <li>Mid-1960s: Concern for people with emotional/learning disabilities impacted adapted PE</li>
+                            <li>National Institute of Mental Health funded Buttonwood Farms Project (valuable for recognizing importance of physical activity for those with disabilities)</li>
+                            <li>Use of perceptual-motor activities gained attention</li>
+                            <li>1965: Joseph P. Kennedy, Jr. Foundation awarded grant to AAHPERD to launch Project on Recreation and Fitness for the Mentally Retarded</li>
+                            <li>1968: Unit name changed to Unit on Programs for the Handicapped (directed by Dr. Julian U. Stein)</li>
+                            <li>Unit dramatically influenced adapted PE at every level throughout the US</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Key Historical Figures</h3>
+                <ul>
+                    <li><strong>Samuel Gridley Howe</strong> - School director who advocated health benefits of physical activity (1838)</li>
+                    <li><strong>Per Henrik Ling</strong> - Developed Swedish medical gymnastics system</li>
+                    <li><strong>Luther Halsey Gulick</strong> - Pioneer in promotion of medical gymnastics</li>
+                    <li><strong>Arthur Daniels</strong> - Authored first textbook on Adapted PE (1954)</li>
+                    <li><strong>Dr. Julian U. Stein</strong> - Directed AAHPERD Unit on Programs for the Handicapped</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Detail 6: Inclusion Movement -->
+        <div id="detail6" class="detail-view">
+            <div class="detail-header">
+                <div class="detail-icon">🤝</div>
+                <div class="detail-title">
+                    <h2>Inclusion Movement</h2>
+                    <p>Education in general settings with peers</p>
+                </div>
+                <button class="back-btn" onclick="showGrid()">← Back to Menu</button>
+            </div>
+
+            <div class="content-section">
+                <h3>Definition</h3>
+                <div class="highlight-box">
+                    <p><strong>Inclusion</strong> means educating students with disabilities in a general educational setting.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Movement Origins</h3>
+                <p>The inclusion movement was encouraged by and is compatible with the LRE (Least Restrictive Environment) provisions associated with IDEA.</p>
+                <p>Education in the LRE requires that children with disabilities be educated alongside children without disabilities to the maximum extent appropriate.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Continuum of Alternative Environments</h3>
+                <div class="highlight-box">
+                    <p>A continuum of alternative instructional placements may be used for education if those are the most appropriate environments, including:</p>
+                    <ul>
+                        <li>Fully integrated (general education environments)</li>
+                        <li>Completely segregated (separate classes/schools)</li>
+                        <li>Various options in between</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Current Reality</h3>
+                <p>Today, all but a small percentage of students with disabilities attend schools with peers without disabilities.</p>
+                <p>Over <strong>90%</strong> of children with disabilities spend at least part of their school day in general education classrooms.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Philosophy</h3>
+                <div class="highlight-box">
+                    <p>Many believe that:</p>
+                    <ul>
+                        <li>Separate education is NOT an equal education</li>
+                        <li>The setting of a program significantly influences the program</li>
+                        <li>Inclusion promotes integration and acceptance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Universal Design for Learning (UDL)</h3>
+                <p>UDL has roots in the Americans with Disabilities Act of 1990. It ensures that <strong>all students</strong>, including those with unique needs, have success in learning, especially in inclusive educational settings.</p>
+            </div>
+        </div>
+
+        <!-- Detail 7: Litigation -->
+        <div id="detail7" class="detail-view">
+            <div class="detail-header">
+                <div class="detail-icon">⚖️</div>
+                <div class="detail-title">
+                    <h2>Litigation</h2>
+                    <p>Landmark court cases</p>
+                </div>
+                <button class="back-btn" onclick="showGrid()">← Back to Menu</button>
+            </div>
+
+            <div class="content-section">
+                <h3>Impact of Litigation</h3>
+                <p>Much has been written about the impact of litigation on the guarantee of full educational opportunity in the United States.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Key Cases</h3>
+                
+                <div class="law-card">
+                    <h4>Brown v. Board of Education of Topeka (1954)</h4>
+                    <p><strong>Significance:</strong> Established that the doctrine of "separate but equal" in public education resulted in segregation that violated constitutional rights of Black students.</p>
+                    <p><strong>Impact:</strong> Most prominent case serving as important precedent for civil litigation. While not disability-focused, it established the foundation for educational equality.</p>
+                </div>
+
+                <div class="law-card">
+                    <h4>Pennsylvania Association for Retarded Children v. Commonwealth of Pennsylvania (1972)</h4>
+                    <p><strong>Basis:</strong> Equal protection and due process clauses of Fifth and Fourteenth Amendments</p>
+                    <p><strong>Key Rulings:</strong></p>
+                    <ul>
+                        <li>Labeling a child as mentally retarded or denying public education/placement in regular setting without due process or hearing violates individual rights</li>
+                        <li>All mentally retarded children are capable of benefiting from a program of education and training</li>
+                        <li>Mental age may not be used to postpone or deny access to free public program of education and training</li>
+                        <li>Having undertaken to provide free, appropriate education, a state may not deny mentally retarded children the same</li>
+                    </ul>
+                </div>
+
+                <div class="law-card">
+                    <h4>Mills v. Board of Education of the District of Columbia (1972)</h4>
+                    <p><strong>Action:</strong> Brought on behalf of seven children to restrain DC from excluding children with disabling conditions from public schools or denying them publicly supported education</p>
+                    <p><strong>Ruling:</strong> By failing to provide the children and the class they represented with publicly supported specialized education, the district violated:</p>
+                    <ul>
+                        <li>Controlling statutes</li>
+                        <li>Its own regulations</li>
+                        <li>Due process</li>
+                    </ul>
+                    <p><strong>Requirements:</strong> DC required to provide publicly supported education, appropriate equitable funding, and procedural due process rights</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Litigation Period (1972-1975)</h3>
+                <p>From 1972 to 1975, <strong>46 right-to-education cases</strong> related to people with disabilities were tried in 28 states.</p>
+                <p>These cases provided foundation for much of the legislation to be discussed in the next section.</p>
+            </div>
+        </div>
+
+        <!-- Detail 8: Important Laws -->
+        <div id="detail8" class="detail-view">
+            <div class="detail-header">
+                <div class="detail-icon">📜</div>
+                <div class="detail-title">
+                    <h2>Laws Important to Adapted Physical Education and Sport</h2>
+                    <p>Federal legislation overview</p>
+                </div>
+                <button class="back-btn" onclick="showGrid()">← Back to Menu</button>
+            </div>
+
+            <div class="content-section">
+                <h3>Overview</h3>
+                <p>Four laws or parts of laws and their amendments have had significant impact on adapted PE and adapted sport:</p>
+                <ol>
+                    <li>IDEA (Individuals with Disabilities Education Act)</li>
+                    <li>Section 504 of the Rehabilitation Act of 1973</li>
+                    <li>Olympic and Amateur Sports Act</li>
+                    <li>Americans with Disabilities Act (ADA)</li>
+                </ol>
+                <p>Plus: Every Student Succeeds Act (ESSA) of 2015</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Individuals with Disabilities Education Act (IDEA)</h3>
+                <p><strong>PL 108-446</strong> (Originally PL 94-142, Education for All Handicapped Children Act of 1975)</p>
+                
+                <div class="highlight-box">
+                    <h4>Key Highlights of IDEA:</h4>
+                    <ul>
+                        <li>Right to free and appropriate education</li>
+                        <li>Physical education must be made available to children with disabilities</li>
+                        <li>Equal opportunity for nonacademic and extracurricular activities</li>
+                        <li>Individualized program designed to meet needs of children with disabilities</li>
+                        <li>Programs conducted within the LRE</li>
+                        <li>Nondiscriminatory testing and objective criteria for placement</li>
+                        <li>Due process</li>
+                        <li>Related services to assist in special education</li>
+                    </ul>
+                </div>
+
+                <h4>Free, Appropriate Public Education</h4>
+                <p>Special education and related services must be:</p>
+                <ul>
+                    <li>Provided at public expense, under public supervision and direction, without charge</li>
+                    <li>Meet standards of state educational agency</li>
+                    <li>Include preschool, elementary, or secondary school education</li>
+                    <li>Provided in conformity with an IEP</li>
+                </ul>
+
+                <h4>Definition of Physical Education in IDEA</h4>
+                <div class="highlight-box">
+                    <p>Physical education = development of:</p>
+                    <ul>
+                        <li>(a) Physical and motor fitness</li>
+                        <li>(b) Fundamental motor skills and patterns</li>
+                        <li>(c) Skills in aquatics, dance, and individual and group games and sports (including intramural and lifetime sports)</li>
+                    </ul>
+                    <p>This term includes special PE, adapted PE, movement education, and motor development.</p>
+                </div>
+
+                <h4>Key Terms Under IDEA</h4>
+                <p><strong>Child with a disability:</strong> A child with intellectual disability, hearing impairment including deafness, speech or language impairment, visual impairment including blindness, serious emotional disturbance, orthopedic impairment, autism, traumatic brain injury, learning disability, deafblindness, or multiple disabilities or other health impairments requiring special education and related services.</p>
+                
+                <p><strong>At-risk infant or toddler:</strong> A child under age 3 who would be at risk of experiencing a substantial developmental delay if early intervention services were not provided.</p>
+
+                <p><strong>Infants and toddlers:</strong> Children under age 3 who need early intervention services because they are experiencing developmental delays or have a diagnosed condition with high probability of resulting in developmental delay.</p>
+
+                <h4>Program Planning</h4>
+                <p><strong>IEP (Individualized Education Program):</strong> For students ages 3-21 with disabilities identified under IDEA. Physical education must be considered and might include specially designed instruction.</p>
+                
+                <p><strong>IFSP (Individualized Family Service Plan):</strong> For infants and toddlers with disabilities. Though PE services not mandated for this age group, they may be offered.</p>
+
+                <p><strong>IPEP (Individualized Physical Education Program):</strong> Not covered by federal law but recommended for those with unique needs who have not been identified by school as having a disability.</p>
+
+                <h4>Least Restrictive Environment (LRE)</h4>
+                <p>Students with disabilities are educated alongside students without disabilities to maximum extent appropriate. Special classes, separate schooling, or other removal from general environment occurs only when nature or severity of disability is such that education in general classes with use of supplementary aids and services cannot be achieved satisfactorily.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Section 504 of the Rehabilitation Act of 1973</h3>
+                <p><strong>PL 93-112</strong></p>
+                
+                <div class="highlight-box">
+                    <p><strong>Key Provision:</strong> No otherwise qualified person with a disability, solely by reason of that disability, be excluded from participation in, denied benefits of, or subjected to discrimination under any program or activity receiving federal financial assistance.</p>
+                </div>
+
+                <h4>Focus on Student Needs and Opportunities</h4>
+                <p>IDEA implicitly, if not explicitly, encourages educators to focus on educational needs of student instead of clinical or diagnostic labels.</p>
+
+                <h4>Equal Opportunity</h4>
+                <p>Section 504 requires <strong>equal opportunity</strong> to attain same results, gain same benefits, or reach same levels of achievement as peers without disabilities.</p>
+                
+                <h4>Equally Effective vs. Identical</h4>
+                <div class="highlight-box">
+                    <p><strong>Example:</strong> A written test given at end of semester would not provide student who is blind with equal opportunity to demonstrate knowledge of material. An oral or braille exam would provide <strong>equivalent</strong> (not identical) services.</p>
+                </div>
+
+                <h4>Most Inclusive Settings Possible</h4>
+                <p>To maximum degree possible, individuals with disabilities should participate in LRE, represented by a continuum of alternative instructional placements.</p>
+
+                <h4>Section 504 Plan</h4>
+                <p>For students with disabilities not classified under IDEA but who still need accommodations. Example: A 504 plan related to PE might seek specialized instruction or equipment, auxiliary aids or services, or program modifications.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Olympic and Amateur Sports Act</h3>
+                <p><strong>Amateur Sports Act (ASA) of 1978 (PL 95-606)</strong></p>
+                <p><strong>Amended by Ted Stevens Olympic and Amateur Sports Act of 1998 (PL 105-277)</strong></p>
+                
+                <p>Has contributed significantly to provision of amateur athletic activity in US, including competition for athletes with disabilities.</p>
+                
+                <h4>Key Provisions</h4>
+                <ul>
+                    <li>Established United States Olympic Committee (USOC) with exclusive jurisdiction over US participation and organization of Olympic Games, Paralympic Games, and Pan American Games</li>
+                    <li>USOC encourages and provides assistance to amateur athletic programs and competition for athletes with disabilities</li>
+                    <li>Where feasible, expansion of opportunities for meaningful participation in programs of athletic competition for athletes without disabilities</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>Americans with Disabilities Act (ADA)</h3>
+                <p><strong>PL 101-336 (1990)</strong></p>
+                
+                <div class="highlight-box">
+                    <p><strong>Scope:</strong> Extended civil rights protection in all areas of life for individuals with disabilities.</p>
+                    <p><strong>Coverage:</strong> Employment, public accommodations and services, public transportation, and telecommunications.</p>
+                </div>
+
+                <h4>Impact on Adapted PE and Sport</h4>
+                <p>In relation to adapted PE and sport, this legislation requires that community recreational facilities (including health and fitness facilities) be accessible and, where appropriate, that reasonable accommodations be made for individuals with disabilities.</p>
+                
+                <p>Physical educators must develop and offer programs that allow individuals with disabilities to participate in physical activity and sport experiences within the community.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Every Student Succeeds Act (ESSA)</h3>
+                <p><strong>PL 114-95 (December 2015)</strong></p>
+                
+                <p>Replaced Elementary and Secondary Education Act (ESEA) of 1965 and No Child Left Behind (NCLB) Act of 2001 as framework for elementary and secondary education.</p>
+
+                <h4>Significance for PE</h4>
+                <ol>
+                    <li><strong>Reaffirms importance of educating children with disabilities</strong> consistent with IDEA</li>
+                    <li><strong>Health and PE included as part of "well-rounded education"</strong> - definition of "core academic subject" did NOT include health and PE, enabling school districts to access funding through state departments of education</li>
+                </ol>
+
+                <h4>Title IV - Safe and Healthy Students</h4>
+                <p>Funding for Safe and Healthy Students opportunity includes health, PE, and physical activity. After 2016, funding replaced Physical Education Program (PEP) grant funding.</p>
+                
+                <p>Designed to encourage development of 21st-century community learning centers, school and community partnerships, and funds for after-school programs including nutrition education and physical activity.</p>
+
+                <h4>Assessment Requirements</h4>
+                <p>States must implement high-quality assessments of student progress toward standards that measure overall performance in each public school and performance of poor, minority, disabled, and English learner subgroups.</p>
+                
+                <p><strong>Potential benefit to health and PE is immeasurable,</strong> particularly for in-school and out-of-school PE and physical activity programs.</p>
+            </div>
+        </div>
+
+        <!-- Detail 9: History of Adapted Sport -->
+        <div id="detail9" class="detail-view">
+            <div class="detail-header">
+                <div class="detail-icon">🏆</div>
+                <div class="detail-title">
+                    <h2>History of Adapted Sport</h2>
+                    <p>Development of sport opportunities</p>
+                </div>
+                <button class="back-btn" onclick="showGrid()">← Back to Menu</button>
+            </div>
+
+            <div class="content-section">
+                <h3>Early Beginnings</h3>
+                <p>Deaf athletes were among first Americans with disabilities to become involved in organized sport at special schools.</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p class="timeline-year">1870s</p>
+                        <p>Ohio School for the Deaf became first school for the Deaf to offer baseball</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">1885</p>
+                        <p>American football introduced</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">1906</p>
+                        <p>Basketball introduced at Wisconsin School for the Deaf</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">1907</p>
+                        <p>First telegraphic track meet between Overbrook and Baltimore schools for the blind. Local results mailed to central committee which made comparisons to determine winners.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">1924</p>
+                        <p>First International Silent Games (now Deaflympics) - formal international competition established with nine nations gathering in Paris</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">1945</p>
+                        <p>American Athletic Association of the Deaf (AAAD) established to provide, sanction, and promote competitive sport opportunities for Americans with hearing impairments</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Development of Wheelchair Sports</h3>
+                
+                <div class="highlight-box">
+                    <p><strong>Sir Ludwig Guttmann</strong> of Stoke Mandeville, England, is credited with introducing competitive sport as an integral part of rehabilitation of veterans with disabilities.</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p class="timeline-year">Late 1940s</p>
+                        <p>Stoke Mandeville Hospital sponsored first recognized games for wheelchair athletes</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">1949</p>
+                        <p>University of Illinois organized first national wheelchair basketball tournament, resulting in formation of National Wheelchair Basketball Association (NWBA)</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">Mid-1950s</p>
+                        <p>Ben Lipton founded National Wheelchair Athletic Association (NWAA). Organization sponsored competitive sport at state, regional, and national levels for participants with spinal cord conditions and other conditions requiring wheelchair use</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">Late 1960s</p>
+                        <p>National Handicapped Sports and Recreation Association (NHSRA) formed by small group of Vietnam veterans. Dedicated to providing year-round sport and recreational opportunities for individuals with disabilities</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Other Sport Organizations</h3>
+                <p>During last quarter of 20th century, other national multisport and unisport programs were formed providing expanded sport offerings to increasing number of individuals with disabilities.</p>
+                
+                <p>Latest opportunities organized for athletes with:</p>
+                <ul>
+                    <li>Visual impairments</li>
+                    <li>Cerebral palsy</li>
+                    <li>Closed head injury</li>
+                    <li>Stroke</li>
+                    <li>Dwarfism</li>
+                    <li>Other conditions</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>Special Olympics</h3>
+                <div class="highlight-box">
+                    <p><strong>Created by Joseph P. Kennedy, Jr. Foundation</strong> to provide and promote athletic competition for individuals with intellectual disabilities.</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p class="timeline-year">1968</p>
+                        <p>Special Olympics held first international games at Soldier Field in Chicago</p>
+                    </div>
+                </div>
+
+                <p><strong>Impact:</strong> Special Olympics has served as model sport organization for individuals with disabilities through leadership in direct service, research, training, advocacy, education, and organizational leadership.</p>
+                
+                <p>Symbol of Special Olympics (gift from former USSR on occasion of 1979 International Special Olympic Games hosted by State University of New York, College at Brockport)</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Contemporary Organizations</h3>
+                
+                <h4>Disabled Sports USA (formerly NHSRA)</h4>
+                <p>Renamed in 1994, then in 2020 merged with Adaptive Sports USA to form <strong>Move United</strong>.</p>
+                
+                <h4>Evolution of Sport Organizations</h4>
+                <p>Evolution within US has led to greater involvement in international competition. Many US sport organizations participate in international games and have international counterparts (notably International Paralympic Committee - IPC).</p>
+                
+                <h4>Multisport vs. Unisport Programs</h4>
+                <ul>
+                    <li><strong>Multisport programs:</strong> Several sports included as part of these programs</li>
+                    <li><strong>Unisport organizations:</strong> Centered on single sports (e.g., NWBA)</li>
+                    <li><strong>Trend:</strong> Sport organizations traditionally offering programs for athletes without disabilities are beginning to organize more opportunities and competition for athletes with disabilities, reducing need for sport organizations focused primarily on types of disability</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>School-Based Adapted Sport</h3>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <p class="timeline-year">1992</p>
+                        <p><strong>Minnesota became first state</strong> to welcome athletes with disabilities into its state school association, officially sanctioning interschool sport for junior and senior high school students with disabilities</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="timeline-year">Recent Development</p>
+                        <p><strong>American Association of Adapted Sports Programs (AAASP)</strong> - Georgia-based nonprofit organization developed to build interscholastic sport leagues for students with physical disabilities</p>
+                        <p>Has developed model for other programs throughout country to imitate. AAASP helps states and schools provide equitable school-based sport opportunities and has demonstrated it's possible to add adapted sport programs to existing school district extracurricular offerings without creating undue administrative burden</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Legislative Impact</h3>
+                <p>Legislation has resulted in:</p>
+                <ul>
+                    <li>Funds for professional preparation, research, and other special projects</li>
+                    <li>Stimulated activity programs for infants and toddlers</li>
+                    <li>Dramatic increases in participation in sport programs for individuals with disabilities</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <p>Impact of federal legislation and strong belief in right to and value of education in general educational environment have resulted in <strong>significant movement toward inclusion</strong> regarding education of children with disabilities in United States.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail 10: Periodicals -->
+        <div id="detail10" class="detail-view">
+            <div class="detail-header">
+                <div class="detail-icon">📰</div>
+                <div class="detail-title">
+                    <h2>Periodicals</h2>
+                    <p>Key journals and publications</p>
+                </div>
+                <button class="back-btn" onclick="showGrid()">← Back to Menu</button>
+            </div>
+
+            <div class="content-section">
+                <h3>Overview</h3>
+                <p>Increased knowledge base and greater attention to adapted PE and sport in recent years have been accompanied by founding and development of several periodicals devoted to the subject.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Major Periodicals</h3>
+                
+                <div class="highlight-box">
+                    <h4>Adapted Physical Activity Quarterly</h4>
+                    <p><strong>Publisher:</strong> Human Kinetics</p>
+                    <p><strong>Description:</strong> Among most relevant of periodicals devoted to adapted PE and sport resources</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Palaestra</h4>
+                    <p><strong>Publisher:</strong> Sagamore Publishing</p>
+                    <p><strong>Description:</strong> Key publication in the field</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Sports 'N Spokes</h4>
+                    <p><strong>Website:</strong> sportsnspokes.com</p>
+                    <p><strong>Description:</strong> Media source for sports and recreation, especially for persons with spinal cord injuries, spina bifida, amputations, etc.</p>
+                    <p><strong>Features:</strong> Both national and international news as well as photos and videos. Offers online magazine published by Paralyzed Veterans of America (PVA)</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>European Journal of Adapted Physical Activity</h4>
+                    <p><strong>Description:</strong> International publication in the field</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Other Relevant Periodicals</h3>
+                <p>Other periodicals that publish directly relevant information from time to time include:</p>
+                <ul>
+                    <li><strong>Journal of Physical Education, Recreation and Dance</strong></li>
+                    <li><strong>Strategies: Research Quarterly for Exercise and Sport</strong></li>
+                    <li><strong>The Physical Educator</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Detail 11: Organizations -->
+        <div id="detail11" class="detail-view">
+            <div class="detail-header">
+                <div class="detail-icon">🏛️</div>
+                <div class="detail-title">
+                    <h2>Organizations</h2>
+                    <p>Professional organizations supporting adapted PE and sport</p>
+                </div>
+                <button class="back-btn" onclick="showGrid()">← Back to Menu</button>
+            </div>
+
+            <div class="content-section">
+                <h3>Society of Health and Physical Educators (SHAPE America)</h3>
+                <p><strong>Formerly:</strong> American Alliance for Health, Physical Education, Recreation and Dance (AAHPERD)</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Significance:</strong> Important national organization making significant contributions to programs for special populations.</p>
+                    <p>Over the years, publications, conferences, and conventions have given much attention to adapted PE and sport—not only on national level but also within state, district, and local affiliates.</p>
+                    <p>Professional conferences and conventions are among best sources of information on adapted PE.</p>
+                </div>
+
+                <h4>Key Contributions</h4>
+                <ul>
+                    <li>Many members whose primary professional concern lies in adapted PE and sport</li>
+                    <li>Extensive publications and resources</li>
+                    <li>National, state, district, and local conferences</li>
+                    <li>Professional development opportunities</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>National Consortium for Physical Education for Individuals with Disabilities (NCPEID)</h3>
+                <p><strong>Also known as:</strong> The Consortium</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Established:</strong> To promote, stimulate, and encourage professional preparation and research</p>
+                    <p><strong>Origins:</strong> Started informally in late 1960s by small group of college and university directors of federally funded professional preparation or research projects seeking to share information</p>
+                </div>
+
+                <h4>Key Activities</h4>
+                <ul>
+                    <li>Extensive backgrounds and interests in adapted PE and sport</li>
+                    <li>Provided leadership and input on national issues and concerns</li>
+                    <li>Development of IDEA and its rules and regulations</li>
+                    <li>Federal funding for professional preparation, research, demonstration projects, and other special projects</li>
+                    <li>Monitoring of legislation</li>
+                    <li>Annual meetings</li>
+                    <li>Active website maintenance</li>
+                </ul>
+
+                <h4>National Standards</h4>
+                <p>The Consortium is recognized for establishing <strong>National Standards in Adapted Physical Education</strong> as well as a qualifying certification examination.</p>
+                <p>Those who successfully complete examination are awarded <strong>certification in adapted physical education</strong>.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>International Federation for Adapted Physical Activity (IFAPA)</h3>
+                <p><strong>Origins:</strong> Originated in Quebec</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Scope:</strong> Expanded to worldwide organization with international charter</p>
+                    <p><strong>Primary Service:</strong> Sponsor biennial international adapted physical activity symposium</p>
+                </div>
+
+                <h4>Regional Structure</h4>
+                <p>Symposia organized by IFAPA also held in other regions throughout world in alternating years.</p>
+                
+                <p><strong>North American Affiliate:</strong> North American Federation of Adapted Physical Activity (NAFAPA)</p>
+                
+                <p><strong>Other Regional Affiliates:</strong></p>
+                <ul>
+                    <li>Africa</li>
+                    <li>Asia</li>
+                    <li>Europe</li>
+                    <li>Middle East</li>
+                    <li>Oceania</li>
+                    <li>South America</li>
+                </ul>
+
+                <h4>Membership</h4>
+                <p>Organization composed of higher education scholars, practitioners, and students dedicated to promoting adapted physical activity.</p>
+                
+                <p><strong>Mission:</strong> With its international scope, IFAPA disseminates valuable knowledge throughout the world.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>State Organizations</h3>
+                <p>A few states now organize statewide competition for athletes with disabilities. Some are combined with community-based sport programs, others provided independently.</p>
+                
+                <p>Sport programs in rehabilitation settings for members of communities are emerging in major cities in United States.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>American Association of Adapted Sports Programs (AAASP)</h3>
+                <p><strong>Website:</strong> adaptedsports.org</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Purpose:</strong> Provides organizational structure and leadership to enable and facilitate statewide competition in school-based adapted sports</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Additional Resources</h3>
+                
+                <h4>Human Kinetics</h4>
+                <p><strong>Website:</strong> humankinetics.com</p>
+                <p>Home of <em>Adapted Physical Activity Quarterly</em> and other adapted PE and sport resources</p>
+
+                <h4>National Center on Health, Physical Activity and Disability (NCHPAD)</h4>
+                <p><strong>Website:</strong> nchpad.org</p>
+                <p>Provides information and resources to enable people with disabilities to become as physically active as possible</p>
+
+                <h4>PE Central</h4>
+                <p><strong>Website:</strong> pecentral.org</p>
+                <p>Assists teachers and other adults in helping children become physically active and healthy for a lifetime. Provides up-to-date information on developmentally appropriate programs for school-aged children</p>
+
+                <h4>Minnesota Adapted Athletics Association (MAAA)</h4>
+                <p><strong>Website:</strong> mnadaptedathletics.org</p>
+                <p>Provides leadership and organizes interscholastic athletic opportunities for students with disabilities in Minnesota</p>
+            </div>
+        </div>
+
+        <!-- Detail 12: Summary -->
+        <div id="detail12" class="detail-view">
+            <div class="detail-header">
+                <div class="detail-icon">✨</div>
+                <div class="detail-title">
+                    <h2>Chapter Summary</h2>
+                    <p>Key takeaways from Chapter 1</p>
+                </div>
+                <button class="back-btn" onclick="showGrid()">← Back to Menu</button>
+            </div>
+
+            <div class="content-section">
+                <div class="highlight-box">
+                    <p>Over the past few decades, <strong>increased attention has been given to adapted physical education and sport.</strong></p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>What This Chapter Covered</h3>
+                
+                <h4>📚 Brief History</h4>
+                <p>The chapter presented a brief history of the field, tracing its evolution from medical treatment (1838) through various stages to the comprehensive subdiscipline it is today.</p>
+
+                <h4>📋 Program Direction</h4>
+                <p>Information regarding program direction was presented, emphasizing:</p>
+                <ul>
+                    <li>Self-actualization as primary purpose</li>
+                    <li>SHAPE America's 5 National Standards</li>
+                    <li>Framework including psychomotor, cognitive, and affective domains</li>
+                    <li>Content areas: physical fitness, motor development, rhythm/dance, aquatics, games/sports</li>
+                </ul>
+
+                <h4>👥 Service Providers</h4>
+                <p>The importance and characteristics of those providing services in this field were recognized, emphasizing that:</p>
+                <ul>
+                    <li>Services provided by both specialists AND general PE teachers</li>
+                    <li>Teachers must have appropriate knowledge, skills, and values</li>
+                    <li>Success requires caring attitude and creation of positive environment</li>
+                </ul>
+
+                <h4>⚖️ Litigation, Legislation, and Inclusion</h4>
+                <p>The chapter stressed the importance of:</p>
+                <ul>
+                    <li><strong>Litigation:</strong> Landmark cases establishing educational rights</li>
+                    <li><strong>Legislation:</strong> IDEA, Section 504, ADA, Olympic and Amateur Sports Act, ESSA</li>
+                    <li><strong>Inclusion Movement:</strong> Education in LRE and general settings</li>
+                </ul>
+
+                <h4>🏆 Adapted Sport Development</h4>
+                <p>Historical development of adapted sport opportunities was traced from:</p>
+                <ul>
+                    <li>Early deaf athletes (1870s)</li>
+                    <li>Wheelchair sports (1940s-1950s)</li>
+                    <li>Special Olympics (1968)</li>
+                    <li>Contemporary multisport and unisport organizations</li>
+                    <li>School-based programs (1990s-present)</li>
+                </ul>
+
+                <h4>📰 Professional Resources</h4>
+                <p>Periodicals and organizations significant to adapted PE and sport were identified and described, including:</p>
+                <ul>
+                    <li><strong>Periodicals:</strong> Adapted Physical Activity Quarterly, Palaestra, Sports 'N Spokes</li>
+                    <li><strong>Organizations:</strong> SHAPE America, NCPEID, IFAPA, AAASP</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>Looking Forward</h3>
+                <div class="highlight-box">
+                    <p>The field of adapted physical education and sport continues to evolve, driven by:</p>
+                    <ul>
+                        <li>Legislative support</li>
+                        <li>Growing awareness and advocacy</li>
+                        <li>Professional development and research</li>
+                        <li>Commitment to inclusion and equity</li>
+                        <li>Recognition of the value of physical activity for all individuals</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3>Core Message</h3>
+                <div class="highlight-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
+                    <h4 style="color: white;">💪 Remember:</h4>
+                    <p style="color: white; font-size: 1.1em;">
+                        <strong>Adapted physical education and sport fulfill individuals' unique needs and abilities related to physical activity,</strong> promoting self-actualization and contributing to optimal personal development for all members of society.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function showDetail(detailId) {
+            // Hide main grid
+            document.getElementById('mainGrid').style.display = 'none';
+            
+            // Hide all detail views
+            const details = document.querySelectorAll('.detail-view');
+            details.forEach(detail => {
+                detail.classList.remove('active');
+            });
+            
+            // Show selected detail
+            document.getElementById(detailId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function showGrid() {
+            // Show main grid
+            document.getElementById('mainGrid').style.display = 'grid';
+            
+            // Hide all detail views
+            const details = document.querySelectorAll('.detail-view');
+            details.forEach(detail => {
+                detail.classList.remove('active');
+            });
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
